@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Project name:</b>
+  <%= @result.project_name %>
+</p>
+
+<p>
+  <b>Start date:</b>
+  <%= @result.start_date %>
+</p>
+
+<p>
+  <b>End date:</b>
+  <%= @result.end_date %>
+</p>
+
+<p>
+  <b>Data:</b>
+  <%= @result.data %>
+</p>
+
+
+<%= link_to 'Edit', edit_result_path(@result) %> |
+<%= link_to 'Back', results_path %>
