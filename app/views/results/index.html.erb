@@ -1,3 +1,4 @@
+<div class="center hero-unit">
 <h1>Listing results</h1>
 
 <table>
@@ -59,7 +60,7 @@
 
 <br />
 
-<%= button_tag(:type => 'button', :id => 'r_btn', :onclick=>'range_filter()') do
+<%= button_tag(:type => 'button', :id => 'r_btn', :class => "btn btn-large btn-primary", :onclick=>'range_filter()') do
   content_tag(:strong, 'Add Filters!')
 end %>
 
@@ -86,3 +87,5 @@ end %>
 <br />
 
 <%= link_to 'New Result', new_result_path %>
+
+</div>
