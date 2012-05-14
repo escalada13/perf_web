@@ -1,20 +1,22 @@
 <h1>Listing results</h1>
 
 <table>
+  <thead>
   <tr>
     <th>Project name</th>
-    <th>Start date</th>
-    <th>End date</th>
+    <th style="width:150px">Start date</th>
+    <th style="width:150px">End date</th>
     <th>Data</th>
     <th></th>
     <th></th>
     <th></th>
   </tr>
-
+  </thead>
+  <tbody>
 <% @results.each do |result| %>
   <tr>
     <td><%= result.project_name %></td>
-    <td><%= result.start_date %></td>
+    <td ><%= result.start_date %></td>
     <td><%= result.end_date %></td>
     <td><%= result.data %></td>
     <td><%= link_to 'Show', result %></td>
@@ -22,7 +24,64 @@
     <td><%= link_to 'Destroy', result, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
+  </tbody>
 </table>
+
+<br />
+
+<br />
+
+
+<div id="slider-range"></div>
+<span id="new_range"></span>
+
+<script type="text/javascript">
+    
+    $("#slider-range").slider({
+        range: true,
+        min: 1325404800000,
+        max: 1357027200000,
+        values: [1330588800000, 1335855600000],
+        slide: slideTime
+    });
+    
+    function slideTime(event, ui){
+      //alert(new Date(1273185387).toUTCString());
+        var val0 = $("#slider-range").slider("values", 0),
+            val1 = $("#slider-range").slider("values", 1),
+        startTime = new Date(val0).toUTCString();
+        endTime = new Date(val1).toUTCString();
+        $("#new_range").text(startTime + ' - ' + endTime);
+    }
+    slideTime();    
+  
+</script>
+
+<br />
+
+<%= button_tag(:type => 'button', :id => 'r_btn', :onclick=>'range_filter()') do
+  content_tag(:strong, 'Add Filters!')
+end %>
+
+<script>
+	 
+	  function range_filter(){
+	    var val0 = $("#slider-range").slider("values", 0),
+          val1 = $("#slider-range").slider("values", 1),
+      startTime = new Date(val0).toUTCString();
+      endTime = new Date(val1).toUTCString();
+      
+	    $.getJSON("/results/filter", {"start_range": startTime.toString(), "end_range": endTime.toString()}, function(data) { 
+	      $("tbody").empty();
+	      $.each(data, function(key, value) {
+	        $("tbody").append("<tr><td colspan='7'>" + value.project_name + "</td></tr>");
+	      });
+	      });
+	  }
+
+</script>
+
+<br />
 
 <br />
 

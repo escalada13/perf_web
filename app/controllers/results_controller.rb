@@ -80,4 +80,9 @@ class ResultsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def filter_by_range
+    render :json => Result.where(:start_date => Range.new(Time.parse(params[:start_range]), Time.parse(params[:end_range]))).to_json
+  end
+  
 end

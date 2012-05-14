@@ -2,13 +2,34 @@
 <html>
 <head>
   <title>PerfWeb</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag 'custom', :media => 'screen' %>
+  <%= stylesheet_link_tag    "application", "ui-lightness/jquery-ui-1.8.20.custom", :media => "all" %>
+  <%= stylesheet_link_tag    "application", "html9responsiveboilerstrap.js", :media => "all" %>
+  <%= javascript_include_tag "application", "jquery-ui-1.8.20.custom.min" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <header>
+    <div class="inside">
+      <a id="logo"> 
+        <h1>Perforchestor</h1>
+        <div id="tag">Everything needs performance</div>
+      </a>
+      <nav class="main-nav-wrap">
+        <ul class="main-nav group">
+          <li class="button1"><a href="/">Button 1<span>sub text button 1</span></a></li>
+          <li class="button2"><a href="/">Button 2<span>sub text button 2</span></a></li>
+          <li class="button3"><a href="/">Button 3<span>sub text button 3</span></a></li>
+          <li class="button4"><a href="/" >Button 4<span>sub text button 4</span></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
 <%= yield %>
 
+  <footer>
+    
+  </footer>  
 </body>
 </html>

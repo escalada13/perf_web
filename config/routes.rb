@@ -1,4 +1,6 @@
 PerfWeb::Application.routes.draw do
+  match 'results/filter' => 'results#filter_by_range'
+  
   resources :results
 
   root :to => 'home#index'
